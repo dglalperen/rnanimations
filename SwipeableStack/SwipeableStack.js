@@ -11,6 +11,7 @@ const SwipeableStack = () => {
       renderItem={(card) => <Stampcard color={card.color} title={card.title} />}
       onItemClicked={(card) => console.log(card.title)}
       onSwipe={(index) => console.log(index)}
+      stackSpacing={35}
     />
   );
 };
