@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 
-export default function Stampcard({ title, color }) {
+export default function Stampcard({ title, color, favicon }) {
   return (
     <View
       style={{
@@ -10,9 +10,11 @@ export default function Stampcard({ title, color }) {
         width: 350,
         backgroundColor: color,
         borderRadius: "20%",
+        position: "absolute",
       }}
     >
       <Text style={{ fontSize: 16, fontWeight: "600" }}>{title}</Text>
+      <Image source={favicon} resizeMode={"contain"} />
     </View>
   );
 }

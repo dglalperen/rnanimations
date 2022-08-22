@@ -8,7 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import Stampcard from "./Stampcard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWindowDimensions } from "react-native";
 
 const HORIZONTAL_SWIPE_THRESHOLD = 40;
@@ -26,21 +26,33 @@ const MovableStampcard = ({ id, title, color, positions }) => {
   const resetTopOffset = zIndexCard.value * 30;
   const resetLeftOffset = (dimensions.width - 350) / 2;
 
+  const [visibleCards, setVisibleCards] = useState([]);
+  const [indexC, setIndexC] = useState(3);
+
+  // useEffect(() => {
+  //   var arr = [];
+  //   cardsData.forEach((card, index) => {
+  //     if (index < indexC) {
+  //       arr.push(card);
+  //     }
+  //   });
+  //   setVisibleCards(arr);
+  // }, []);
+
   const gestureHandler = useAnimatedGestureHandler({
-    onStart() {
+    onStart(_, ctx) {
+      ctx.x = x.value;
+      ctx.y = y.value;
       runOnJS(setMoving)(true);
     },
     onActive(event) {
       const transformX = event.translationX;
       const transformY = event.translationY;
-      console.log(`x: ${event.absoluteX}`);
-      console.log(`y: ${event.absoluteY}`);
+      // console.log(`x: ${event.absoluteX}`);
+      // console.log(`y: ${event.absoluteY}`);
 
       if (moving) {
-        topOffset.value = withSpring(transformY + 100, {
-          overshootClamping: true,
-          damping: 20,
-        });
+        topOffset.value = withSpring(transformY + 100);
         leftOffset.value = withSpring(transformX);
       }
     },
@@ -53,7 +65,7 @@ const MovableStampcard = ({ id, title, color, positions }) => {
         event.absoluteY > 520
       ) {
         topOffset.value = withSpring((zIndexCard.value - 1) * 30);
-        zIndexCard.vallue -= 1;
+        //zIndexCard.vallue -= 1;
         leftOffset.value = withSpring(resetLeftOffset);
         console.log("moving back");
       } else {

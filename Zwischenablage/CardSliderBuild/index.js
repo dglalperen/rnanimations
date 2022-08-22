@@ -87,13 +87,13 @@ class SwipeableViewStack extends PureComponent<
             Animated.timing(this.state.viewPan, {
               toValue: 0,
               duration: SWIPE_ANIM_DURATION,
-              useNativeDriver: false,
+              useNativeDriver: true,
             }).start();
 
             Animated.timing(this.state.viewStackedAnim, {
               toValue: 1,
               duration: SWIPE_ANIM_DURATION,
-              useNativeDriver: false,
+              useNativeDriver: true,
             }).start(() => {
               this.state.viewStackedAnim.setValue(0);
 
@@ -124,7 +124,7 @@ class SwipeableViewStack extends PureComponent<
             Animated.timing(this.state.viewPan, {
               toValue: 0,
               duration: SWIPE_ANIM_DURATION,
-              useNativeDriver: false,
+              useNativeDriver: true,
             }).start();
           }
         } else if (
@@ -136,7 +136,7 @@ class SwipeableViewStack extends PureComponent<
           Animated.timing(this.state.viewPan, {
             toValue: 0,
             duration: SWIPE_ANIM_DURATION,
-            useNativeDriver: false,
+            useNativeDriver: true,
           }).start();
         }
       },
@@ -153,13 +153,13 @@ class SwipeableViewStack extends PureComponent<
             Animated.timing(this.state.viewPan, {
               toValue: 0,
               duration: SWIPE_ANIM_DURATION,
-              useNativeDriver: false,
+              useNativeDriver: true,
             }).start();
 
             Animated.timing(this.state.viewStackedAnim, {
               toValue: 1,
               duration: SWIPE_ANIM_DURATION,
-              useNativeDriver: false,
+              useNativeDriver: true,
             }).start(() => {
               this.state.viewStackedAnim.setValue(0);
 
@@ -182,14 +182,14 @@ class SwipeableViewStack extends PureComponent<
             Animated.timing(this.state.viewPan, {
               toValue: 0,
               duration: SWIPE_ANIM_DURATION,
-              useNativeDriver: false,
+              useNativeDriver: true,
             }).start();
           }
         } else {
           Animated.timing(this.state.viewPan, {
             toValue: 0,
             duration: SWIPE_ANIM_DURATION,
-            useNativeDriver: false,
+            useNativeDriver: true,
           }).start();
         }
       },

@@ -44,27 +44,37 @@ const cards = [
     id: "joechamps",
     title: "Joechamps Cologne",
     color: "pink",
+    favicon: require("../assets/favicon.png"),
   },
   {
     id: "7ieben",
     title: "7ieben Cologne",
     color: "lightgreen",
+    favicon: require("../assets/favicon.png"),
   },
   {
     id: "cafedesol",
     title: "Cafe De Sol",
     color: "tomato",
+    favicon: require("../assets/favicon.png"),
   },
   {
     id: "burgerking",
     title: "Burger King",
     color: "blue",
+    favicon: require("../assets/favicon.png"),
   },
   {
     id: "mcdonalds",
     title: "McDonalds",
     color: "purple",
+    favicon: require("../assets/favicon.png"),
   },
 ];
 
-export { cards, listToObject };
+function enumerateZIndex(arr) {
+  let zIndex = 0;
+  arr.forEach();
+}
+
+export { cards, listToObject, shuffle };
