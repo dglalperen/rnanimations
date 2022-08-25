@@ -1,9 +1,8 @@
 import React from "react";
 
-import { ZIndexMain } from "./ZIndexTest/ZIndexMain";
-
+import { CardSlider } from "./CardSliderMain/CardSlider";
 const App = () => {
-  return <ZIndexMain />;
+  return <CardSlider />;
 };
 
 export default App;

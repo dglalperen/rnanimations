@@ -130,7 +130,7 @@ function Card({ card, changeIndex, sizeOfCards }) {
   );
 }
 
-export const ZIndexMain = () => {
+export const CardSlider = () => {
   const changeZIndex = () => {
     "worklet";
     changeIndex.value = true;
