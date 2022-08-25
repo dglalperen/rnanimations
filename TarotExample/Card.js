@@ -6,22 +6,21 @@ import {
   Image,
   Text,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   Easing,
-  interpolate,
-  runOnJS,
   runOnUI,
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
+  runOnJS,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
 import { snapPoint } from "react-native-redash";
-import Stampcard from "../CardSliderYT/Stampcard";
 
 const { width: wWidth, height } = Dimensions.get("window");
 
@@ -35,7 +34,7 @@ const DURATION = 250;
 const HORIZONTAL_SWIPE_THRESHOLD = 40;
 const VERTICAL_SWIPE_THRESHOLD = 80;
 
-export const Card = ({ card, rearrange, index, sizeOfCards }) => {
+export const Card = ({ card, rearrange, index, sizeOfCards, moveToBack }) => {
   const offset = useSharedValue({ x: 0, y: 0 });
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(-height);
@@ -63,6 +62,7 @@ export const Card = ({ card, rearrange, index, sizeOfCards }) => {
         if (zIndex.value > sizeOfCards - 1) {
           zIndex.value = 0;
         }
+
         // translateY.value = withDelay(
         //   duration,
         //   withSpring(zIndex.value * 20, {}, () => {
@@ -97,9 +97,9 @@ export const Card = ({ card, rearrange, index, sizeOfCards }) => {
         translateX.value > HORIZONTAL_SWIPE_THRESHOLD ||
         translateX.value < -HORIZONTAL_SWIPE_THRESHOLD
       ) {
+        runOnJS(moveToBack)(index, card);
         rearrange.value = true;
       }
-      console.log(zIndex.value);
       translateX.value = withSpring(0);
       translateY.value = withSpring(0, { velocity: velocityY });
 
@@ -111,6 +111,7 @@ export const Card = ({ card, rearrange, index, sizeOfCards }) => {
     });
 
   const style = useAnimatedStyle(() => ({
+    position: "absolute",
     transform: [
       { translateX: translateX.value },
       { translateY: translateY.value + index * 20 },
@@ -148,7 +149,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   card: {
-    backgroundColor: "white",
+    position: "absolute",
+    top: 300,
+    left: 20,
     borderRadius: 10,
     width: CARD_WIDTH,
     height: CARD_HEIGHT,
